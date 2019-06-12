@@ -1,5 +1,5 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -89,7 +89,7 @@ customHeadersFooters
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman "md-charter" "default"
+\font_roman "default" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
@@ -99,6 +99,8 @@ customHeadersFooters
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format pdf2
 \output_sync 1
@@ -138,6 +140,7 @@ customHeadersFooters
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -150,7 +153,10 @@ customHeadersFooters
 \tocdepth 1
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language french
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swiss
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle fancy
@@ -169,11 +175,11 @@ Le traitement d'images
 \end_inset
 
 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 pour les nuls
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 
@@ -201,8 +207,8 @@ today
 \end_layout
 
 \begin_layout Abstract
-Ces document présente une introduction à l'analyse et au traitement d'images
- dans un cadre scientifique.
+Ce document présente une introduction à l'analyse et au traitement d'images
+ dans un cadre scientifique, en particulier pour les sciences du vivant.
  Le public visé est le scientifique (chercheur, ingénieur ou technicien)
  qui a besoin d'outils pour analyser des images acquises dans le cadre de
  ses recherches.
@@ -213,8 +219,17 @@ Ces document présente une introduction à l'analyse et au traitement d'images
 \end_layout
 
 \begin_layout Abstract
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Le contenu de ce document est destiné à être transféré sur le site internet
  de la plateforme logicielle Cépia une fois qu'il sera finalisé.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -315,11 +330,11 @@ Une question qui se pose de plus en plus est d'utiliser ces images pour
  utiliser l'image comme instrument de mesure.
  Dans un premier temps, il est possible de mesurer certains paramètres simples
  
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 à la main
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 , tels que le nombre de cellules, le diamètre apparent des particules...
@@ -329,7 +344,7 @@ Une question qui se pose de plus en plus est d'utiliser ces images pour
  multispectrales...) est complexe.
  De plus, on observe parfois des différences (textures, couleur...) que l'on
  ne sait pas toujours quantifier 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 à l'
@@ -346,7 +361,7 @@ oe
 \end_inset
 
 il
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 .
@@ -417,7 +432,7 @@ analyse
 
 \begin_layout Standard
 Le traitement d'images s'inscrit dans une chaîne de traitement plus large,
- qui comprend en amont la mise au point de l'acquisition (échantillonage
+ qui comprend en amont la mise au point de l'acquisition (échantillonnage
  et préparation du matériel étudié, réglage des conditions d'acquisition,
  contrôle de l'éclairage...), et en aval une analyse statistique des résultats
  obtenus.
@@ -464,7 +479,7 @@ reference "fig:Image-Matricielle"
 
 ).
  Le terme pixel est la contraction de 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 
@@ -474,7 +489,7 @@ picture element
 \shape default
 \lang french
 
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 .
@@ -537,6 +552,16 @@ Représentation d'une image matricielle
 
 Une image matricielle, agrandissement d'une zone de l'image, et affichage
  des valeurs constituant la matrice image.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Utiliser une image de microscopie
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -607,11 +632,12 @@ image comme une application
 \begin_inset Formula $q=1$
 \end_inset
 
- pour une image d'intensité.
- Une image idéale est donc une fonction de la position :
-\end_layout
+ pour une image d'intensité ou 
+\begin_inset Formula $q=3$
+\end_inset
 
-\begin_layout Standard
+ pour une image couleur.
+ Une image idéalisée peut donc être vue comme une fonction de la forme :
 \begin_inset Formula 
 \begin{equation}
 F:\left\{ \begin{array}{ccc}
@@ -978,7 +1004,7 @@ octets
 \end_layout
 
 \begin_layout Standard
-Certains systèmes d'aquisition permettent d'acquérir des images avec une
+Certains systèmes d'acquisition permettent d'acquérir des images avec une
  intensité codée sur 
 \begin_inset Formula $12$
 \end_inset
@@ -1256,22 +1282,22 @@ hue
 \shape default
 \lang french
 , qui représente la couleur principale), de saturation (dosage entre 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 coloré
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  et 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 gris
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
-), et de valeur (qui corespond à l'intensité globale du pixel).
+), et de valeur (qui correspond à l'intensité globale du pixel).
 \end_layout
 
 \begin_layout Subsection
@@ -1311,7 +1337,7 @@ L'intérêt de ces images est de réduire l'espace de stockage nécessaire,
 \begin_inset Formula $256$
 \end_inset
 
- niveaux de gris (la place occupée par la palette est négligable par rapport
+ niveaux de gris (la place occupée par la palette est négligeable par rapport
  à la taille de l'image).
 \end_layout
 
@@ -1720,7 +1746,7 @@ Attention enfin aux fausses images en niveaux de gris, qui stockent une
 \end_layout
 
 \begin_layout Chapter
-Exploration et manipulation des images
+Explorer et visualiser des images
 \end_layout
 
 \begin_layout Standard
@@ -2003,7 +2029,7 @@ Pour les images binaires, on suit en général la même convention que pour
 \end_layout
 
 \begin_layout Standard
-Pour les documents imprimés, ou pour la présentation des résultat, on préfère
+Pour les documents imprimés, ou pour la présentation des résultats, on préfère
  souvent inverser la convention.
  Cela a plusieurs avantages : les structures fines sont plus visibles quand
  elles sont affichées en noir sur fond blanc, le résultat est (souvent)
@@ -2113,122 +2139,7 @@ La même portion d'image agrandie avec l'aperçu des photos de Windows (à
 
 \end_layout
 
-\begin_layout Section
-Profils d'intensité
-\end_layout
-
-\begin_layout Standard
-Un outil interactif très intuitif pour visualiser les variations d'intensité
- dans une image est le profil des intensités.
- Il faut tout d'abord choisi un outil de sélection linéaire (segment, droite
- polygonale...), et tracer la région d'intérêt désirée.
- Le profil d'intensité permet de visualiser les variations d'intensité le
- long de la sélection (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Profil-Intensite"
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/visu/a4b008_lineSelection.png
-	lyxscale 50
-	width 30text%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/visu/a4b008_profile.png
-	lyxscale 50
-	width 30text%
-
-\end_inset
-
- 
-\begin_inset Graphics
-	filename images/visu/demoRgbProfileMaize.png
-	lyxscale 40
-	width 30text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Profil-Intensite"
-
-\end_inset
-
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Profil d'intensité
-\end_layout
-
-\end_inset
-
-Profil d'intensité sur une image en niveaux de gris, et sur une image couleur.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Une petite précaution est à prendre pour l'interprétation des valeurs :
- le profil est généralement calculé en interpolant les valeurs.
- On peut donc avoir des valeurs flottantes à partir d'images en niveaux
- de gris codés sur des entiers, ce qui peut être trompeur.
-\end_layout
-
-\begin_layout Standard
-Pour des images couleurs, le comportement par défaut de certains logiciels
- est souvent d'afficher le profil d'intensité après conversion des couleurs.
- Pour ImageJ, le plugin 
-\begin_inset Quotes fld
-\end_inset
-
-RGB Profile Plot
-\begin_inset Quotes frd
-\end_inset
-
- permet de pallier ce manque (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Profil-Intensite"
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Section
+\begin_layout Subsection
 Palettes de couleurs (tables de correspondance)
 \end_layout
 
@@ -2373,18 +2284,18 @@ hot dégradé du noir au jaune
 \begin_layout Description
 inversion dégradé de niveaux de gris allant du blanc au noir, ce qui permet
  de représenter l'image 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 en négatif
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 
 \end_layout
 
 \begin_layout Description
-bleu+gris+rouge dégradé de niveau de gris, mais la valeur 
+bleu+gris+rouge dégradé de niveaux de gris, mais la valeur 
 \begin_inset Formula $0$
 \end_inset
 
@@ -2394,6 +2305,121 @@ bleu+gris+rouge dégradé de niveau de gris, mais la valeur
 
  est affichée en rouge, afin de mettre en évidence les zones trop ou trop
  peu exposées
+\end_layout
+
+\begin_layout Section
+Profils d'intensité
+\end_layout
+
+\begin_layout Standard
+Un outil interactif très intuitif pour visualiser les variations d'intensité
+ dans une image est le profil des intensités.
+ Il faut tout d'abord choisi un outil de sélection linéaire (segment, droite
+ polygonale...), et tracer la région d'intérêt désirée.
+ Le profil d'intensité permet de visualiser les variations d'intensité le
+ long de la sélection (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Profil-Intensite"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/visu/a4b008_lineSelection.png
+	lyxscale 50
+	width 30text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/visu/a4b008_profile.png
+	lyxscale 50
+	width 30text%
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename images/visu/demoRgbProfileMaize.png
+	lyxscale 40
+	width 30text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Profil-Intensite"
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Profil d'intensité
+\end_layout
+
+\end_inset
+
+Profil d'intensité sur une image en niveaux de gris, et sur une image couleur.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Une petite précaution est à prendre pour l'interprétation des valeurs :
+ le profil est généralement calculé en interpolant les valeurs.
+ On peut donc avoir des valeurs flottantes à partir d'images en niveaux
+ de gris codés sur des entiers, ce qui peut être trompeur.
+\end_layout
+
+\begin_layout Standard
+Pour des images couleurs, le comportement par défaut de certains logiciels
+ est souvent d'afficher le profil d'intensité après conversion des couleurs.
+ Pour ImageJ, le plugin 
+\begin_inset Quotes cld
+\end_inset
+
+RGB Profile Plot
+\begin_inset Quotes crd
+\end_inset
+
+ permet de pallier ce manque (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Profil-Intensite"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Section
@@ -2409,7 +2435,7 @@ Histogramme
 \begin_layout Standard
 L'histogramme d'une image est une application qui à chaque valeur de niveau
  de gris dans l'image associe le nombre de pixels ayant cette valeur.
- Pour image en 
+ Pour une image en 
 \begin_inset Formula $256$
 \end_inset
 
@@ -2897,11 +2923,11 @@ Visualisation plan par plan
 \begin_layout Standard
 Le mode de visualisation le plus simple est de fixer les dimensions supérieures
  à la deuxième, et de représenter une 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 coupe 2D
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  de l'image.
@@ -3021,17 +3047,18 @@ reference "fig:Representation-tete-3D"
 
 \begin_layout Standard
 L'algorithme le plus souvent employé pour cette tâche est celui des 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 Marching Cubes
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Lorensen1987"
+literal "true"
 
 \end_inset
 
@@ -3719,7 +3746,7 @@ Gradients horizontal et vertical par filtre de Prewitt
 
 \end_inset
 
-Une image en niveau de gris, et le résultat d'un filtre de Prewitt dans
+Une image en niveaux de gris, et le résultat d'un filtre de Prewitt dans
  les directions horizontale et verticale.
  Les images filtrées ont été renormalisées entre 
 \begin_inset Formula $0$
@@ -3743,7 +3770,7 @@ Une image en niveau de gris, et le résultat d'un filtre de Prewitt dans
 \end_layout
 
 \begin_layout Standard
-Le résultat de leur application sur une image en niveau de gris est donné
+Le résultat de leur application sur une image en niveaux de gris est donné
  figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -4104,7 +4131,7 @@ Le
 filtre de dynamique locale
 \series default
  (
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 
@@ -4112,7 +4139,7 @@ filtre de dynamique locale
 range filter
 \shape default
 
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 ) permet de quantifier si un pixel est dans une zone homogène ou non.
@@ -4225,11 +4252,11 @@ status open
 
 \begin_layout Plain Layout
 où mettre cette partie ? à intégrer à un chapitre 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 traitements
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 , qui introduit les filtres et la segmentation ? où alors un chapitre particulie
@@ -4317,6 +4344,7 @@ morphologie mathématique
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Serra1982,Soille2003"
+literal "true"
 
 \end_inset
 
@@ -4353,7 +4381,7 @@ Les opérateurs morphologiques travaillent aussi sur le voisinage local de
  structurants de taille et de forme variées.
  Les éléments structurants couramment utilisés sont le disque (isotrope,
  mais qui nécessite souvent un temps de calcul plus long), et le carré,
- qui permet d'accélerer les calculs au prix de quelques artefacts.
+ qui permet d'accélérer les calculs au prix de quelques artefacts.
 \end_layout
 
 \begin_layout Subsection
@@ -4367,11 +4395,11 @@ dilatation morphologique
 \series default
  consiste à déplacer l'élément structurant sur chaque pixel de l'image,
  et à regarder si l'élément structurant 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 touche
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  la structure d'intérêt.
@@ -4838,7 +4866,7 @@ Dilatation et fermeture sur une image de maïs
 \end_inset
 
 Dilatation et fermeture morphologique sur une image de faisceau de maïs
- obervée en microscopie confocale.
+ observée en microscopie confocale.
  
 \end_layout
 
@@ -5297,11 +5325,11 @@ status open
 
 \begin_layout Plain Layout
 faire remonter cette section dans la partie plus générale 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 filtrage
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  ? ce sont des outils assez génériques...
@@ -5679,11 +5707,11 @@ s permettant d'estimer une image de fond à partir d'une image expérimentale.
  On fait en général l'hypothèse que la taille des structures observées est
  petite devant l'étendue des variations d'intensité du fond.
  Les algorithmes populaires de cette famille sont le 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 rolling ball
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 , et le chapeau haut-de-forme (ou tophat).
@@ -5728,11 +5756,11 @@ Correction du fond avec rolling-ball
 \end_inset
 
 Exemple de correction d'intensité du fond en utilisant l'outil 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 Rolling Ball
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  sous ImageJ
@@ -5759,11 +5787,11 @@ rolling ball
  Dans les zones homogènes, le haut de la boule correspond au niveau de gris
  local, et donc au fond.
  Dans les zones avec des pics, la boule 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 bute
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  sur le niveau le plus sombre trouvé dans le voisinage, qui est assimilé
@@ -6107,19 +6135,19 @@ seuillage à hystéresis
 
 \begin_layout Standard
 Le principe est d'utiliser deux seuils : un seuil 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 haut
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  et un seuil 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 bas
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 .
@@ -6132,7 +6160,7 @@ bas
 \begin_layout Standard
 En pratique, cette détection peut se faire soit par reconstruction géodésique,
  soit par étiquetage des composantes connexes de l'image des seuils bas
- et détection des etiquettes présentes dans l'image des seuils hauts.
+ et détection des étiquettes présentes dans l'image des seuils hauts.
 \end_layout
 
 \begin_layout Standard
@@ -6181,11 +6209,11 @@ espace de couleur transformé
  L'espace HSV, par exemple, permet de séparer les notions de teinte, de
  saturation, et d'intensité, ce qui simplifie la recherche des seuils.
  Sous ImageJ, le plugin 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 Color Threshold
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  se révèle très pratique pour la segmentation d'images couleur.
@@ -6460,7 +6488,7 @@ Principe
 L'algorithme s'applique à des images en niveaux de gris.
  L'image est assimilée à un paysage dont l'altitude de chaque point est
  donnée par l'intensité du pixel correspondant.
- Les pixels de forte intensité (blancs) correspondents à des sommets, tandis
+ Les pixels de forte intensité (blancs) correspondent à des sommets, tandis
  que les pixels de faible intensité (noir) correspondent à des fonds de
  vallées.
  
@@ -6765,11 +6793,11 @@ status open
 
 \begin_layout Section
 Contours actifs (
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 Snake
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 )
@@ -7090,11 +7118,11 @@ Ouverture par attribut
 
 \begin_layout Standard
 Une alternative aux filtres morphologiques est d'utiliser une 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 ouverture par attribut
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 .
@@ -7102,11 +7130,11 @@ ouverture par attribut
  correspondant aux particules que l'on veut garder.
  Un choix typique est l'aire, et une valeur minimum correspondant aux particules
  
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 suffisamment grandes
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  (Figure
@@ -7200,28 +7228,28 @@ Ouverture par attribut sur une image étiquetée.
 \begin_layout Standard
 Cette méthode est implémentée dans ImageJ, dans les options de la commande
  
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 Analyze Particles...
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 , mais uniquement pour les paramètres de taille et de circularité.
  Sous Matlab, on peut utiliser la fonction 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 bwareaopen
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 , ou bien passer par la fonction 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 regionprops
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  pour un traitement plus précis.
@@ -7328,11 +7356,11 @@ En pratique, la suppression s'opère à l'aide d'une reconstruction géodésique
  Cet outil est souvent implémenté comme une fonction à part entière dans
  les logiciels (fonction imclearborder sous Matlab, option de la fonction
  Analyze Particles sous ImageJ, outil 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 borderKill
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 ...).
@@ -7641,6 +7669,7 @@ On définit le squelette dans un espace continu comme l'ensemble des points
 LatexCommand citep
 after "p. 162"
 key "Coster1989"
+literal "true"
 
 \end_inset
 
@@ -7650,7 +7679,7 @@ key "Coster1989"
 \end_layout
 
 \begin_layout Standard
-Les algorihtmes de squeletisation utilisent la définition du squelette,
+Les algorithmes de squeletisation utilisent la définition du squelette,
  adaptée à la nature discrète des images, pour cacluler une approximation
  du squelette euclidien.
  On obtient une image binaire dont les structures ont une épaisseur maximale
@@ -7662,21 +7691,21 @@ Un des problèmes souvent rencontrés est que la squeletisation est une opérati
  très sensible au bruit : une petite variation de forme peut engendrer des
  variations importantes du squelette.
  Cela se traduit notamment par la présence de nombreuses 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 barbules
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 , qui relient l'axe du squelette aux petites aspérités du contour (sur les
  parties courbes du B, par exemple).
  Des outils dits 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 d'ébarbulage
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  (en anglais : 
@@ -7894,8 +7923,8 @@ morphologie de particules
 \series default
  est la démarche qui vient souvent en premier lieu à l'esprit.
  Elle consiste à déterminer, pour chaque particule identifiée dans l'image,
- des paramètres descrivant le plus souvent la taille, la forme, ou les statistiq
-ues des niveaux de gris de la particule
+ des paramètres décrivant le plus souvent la taille, la forme, ou les statistiqu
+es des niveaux de gris de la particule
 \end_layout
 
 \begin_layout Itemize
@@ -7916,7 +7945,7 @@ Dans certains cas, la structure d'intérêt se prête mal à une description
 \series bold
 paramètres géométriques globaux
 \series default
- permettent néamnoins une description qui peut s'avérer pertinente.
+ permettent néanmoins une description qui peut s'avérer pertinente.
 \end_layout
 
 \begin_layout Itemize
@@ -7982,6 +8011,7 @@ De nombreuses images présentent un nombre parfois important de particules
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Coster1989"
+literal "true"
 
 \end_inset
 
@@ -8000,11 +8030,11 @@ autres paramètres :
 
 \begin_layout Itemize
 rayons des cercles inscrits (-> 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 épaisseur
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 ) et circonscrit
@@ -8203,7 +8233,7 @@ Cette méthode n'est cependant pas très précise.
  de périmètre pour le disque que pour le carré contenant le disque, et ceci
  quelle que soit la résolution de l'image.
  On peut imaginer des pondérations pour les pixels diagonaux, mais cela
- ne résoud pas le problème.
+ ne résout pas le problème.
 \end_layout
 
 \begin_layout Standard
@@ -8215,10 +8245,7 @@ méthode de Crofton
  de droites d'orientations variées.
  On peut en effet démontrer que le nombre d'intersections est proportionnel
  au nombre de droites et au périmètre de la structure d'intérêt.
-\end_layout
-
-\begin_layout Standard
-Pour des images numériques, on utilise des droites horizontales, verticales,
+ Pour des images numériques, on utilise des droites horizontales, verticales,
  et éventuellement diagonales.
 \end_layout
 
@@ -8247,19 +8274,19 @@ Le périmètre et l'aire sont deux paramètres mesurant la taille des particules
 facteur de circularité
 \series default
  (appelé aussi plus simplement mais de manière plus ambigue 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 facteur de forme
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 , ou encore 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 déficit isopérimétrique
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 ) :
@@ -8335,19 +8362,19 @@ reference "fig:Diamètre-de-Féret"
 
 ).
  On la trouve parfois orthographiée 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 diamètre de Feret
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 , ou 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 diamètre de Ferret
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 , mais la version avec accent semble la plus ancienne, voir par exemple
@@ -8355,6 +8382,7 @@ diamètre de Ferret
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Coster1989"
+literal "true"
 
 \end_inset
 
@@ -8717,6 +8745,7 @@ Les notations ci-dessus proviennent de
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Burger2008"
+literal "true"
 
 \end_inset
 
@@ -8725,6 +8754,7 @@ key "Burger2008"
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Wood1996"
+literal "true"
 
 \end_inset
 
@@ -8919,11 +8949,11 @@ status open
 
 \begin_layout Plain Layout
 extension : 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 arbre des concavités
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
 
@@ -9370,19 +9400,18 @@ volume
 \end_layout
 
 \begin_layout Subsubsection
-Surface
+Aire de surface
 \end_layout
 
 \begin_layout Standard
 La mesure de 
 \series bold
-la surface
+l'aire de surface
 \series default
  nécessite de prendre les mêmes précautions que pour le périmètre en 2D.
  Une première méthode consiste à calculer une représentation surfacique
  de la particule sous la forme d'un maillage triangulaire, puis à calculer
  la somme des aires de chaque triangle.
- 
 \end_layout
 
 \begin_layout Standard
@@ -9502,11 +9531,11 @@ Pour une particule connexe, la caractéristique d'Euler-Poincaré vaut 1.
  café), la caractéristique d'Euler-Poincaré est égale à 1 moins le nombre
  de tunnels.
  Si on a des 
-\begin_inset Quotes fld
+\begin_inset Quotes cld
 \end_inset
 
 bulles
-\begin_inset Quotes frd
+\begin_inset Quotes crd
 \end_inset
 
  (espaces vides complètement à l'intérieur de la particule), on ajoute 1
@@ -9539,7 +9568,7 @@ f_{3} & = & \frac{1}{\pi}\frac{S}{B^{2}}
 
 \end_inset
 
-Ces paramètres ont les mêmes défaults que le déficit isopérimétrique : ils
+Ces paramètres ont les mêmes défauts que le déficit isopérimétrique : ils
  sont très sensibles aux erreurs de mesures faites sur la surface ou l'épaisseur
  moyenne, et leur interprétation est difficile.
  Une autre famille de paramètres se base sur les rapports des longueurs
@@ -9597,7 +9626,7 @@ Microstructure
 \begin_layout Standard
 Dans certains types d'images on observe une structure plus complexe qu'il
  est difficile d'assimiler à un ensemble de particules individuelles : mie
- de pain, mousses solides, aggrégats...
+ de pain, mousses solides, agrégats...
 \end_layout
 
 \begin_layout Standard
@@ -9629,7 +9658,7 @@ Géométrie spécifique
 \end_layout
 
 \begin_layout Standard
-Il est possible de quantifier des images de microstructure en adpatant certains
+Il est possible de quantifier des images de microstructure en adaptant certains
  paramètres morphométriques classiques.
  En 2D, on utilise par exemple le périmètre et l'aire, mais on ne mesure
  que la fraction de structure ou de frontière visible dans les images, que
