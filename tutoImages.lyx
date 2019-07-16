@@ -149,7 +149,7 @@ customHeadersFooters
 \topmargin 4cm
 \rightmargin 3.5cm
 \bottommargin 3.5cm
-\secnumdepth 2
+\secnumdepth 3
 \tocdepth 1
 \paragraph_separation indent
 \paragraph_indentation default
@@ -2960,14 +2960,14 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/visu/headSliceIJ.PNG
-	width 5cm
+	height 4cm
 
 \end_inset
 
  
 \begin_inset Graphics
 	filename images/visu/headSurfRec.PNG
-	width 4cm
+	height 4cm
 
 \end_inset
 
@@ -3013,7 +3013,7 @@ Représentation volumique
 \end_layout
 
 \begin_layout Standard
-La reconstuction volumique montre l'image en perspective, en remplissant
+La reconstruction volumique montre l'image en perspective, en remplissant
  les voxels de l'image de manière plus ou moins dense en fonction de leur
  intensité.
  Il est ainsi possible de localiser les zones de l'image regroupant les
@@ -3027,7 +3027,20 @@ Reconstruction surfacique
 \begin_layout Standard
 Pour des images bien contrastées et relativement peu bruitées, il est possible
  de fixer une valeur seuil, et de représenter la surface équivalente qui
- entoure tous les pixels d'intensité inférieure (ou extérieure) à ce niveau.
+ entoure tous les pixels d'intensité inférieure (ou extérieure) à ce niveau
+ (
+\begin_inset Quotes cld
+\end_inset
+
+
+\emph on
+isosurface
+\emph default
+
+\begin_inset Quotes crd
+\end_inset
+
+).
  On obtient une représentation sous forme de maillage surfacique, que l'on
  peut visualiser plus facilement en 3D, éventuellement en superposant un
  ensemble de coupes de l'image d'origine (Figure
@@ -3050,7 +3063,11 @@ L'algorithme le plus souvent employé pour cette tâche est celui des
 \begin_inset Quotes cld
 \end_inset
 
+
+\emph on
 Marching Cubes
+\emph default
+
 \begin_inset Quotes crd
 \end_inset
 
@@ -3062,7 +3079,11 @@ literal "true"
 
 \end_inset
 
-, ou une de ses variantes.
+, ou une de ses variantes comme les 
+\emph on
+marching tetrahedra
+\emph default
+.
 \end_layout
 
 \begin_layout Part
@@ -3909,7 +3930,7 @@ Détection des contours par Prewitt et Sobel
 
 Résultat de la détection des contours en utilisant les fitres de Prewitt
  (à gauche) ou de Sobel (à droite), et en calculant le module sur les directions
- horizontales et verticales.
+ horizontale et verticale.
 \end_layout
 
 \end_inset
@@ -4385,6 +4406,10 @@ Les opérateurs morphologiques travaillent aussi sur le voisinage local de
 \end_layout
 
 \begin_layout Subsection
+Principes
+\end_layout
+
+\begin_layout Subsubsection
 Érosion et dilatation
 \end_layout
 
@@ -4412,7 +4437,10 @@ touche
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Erosion-Dilatation"
+reference "fig:Erosion-Dilatation-Binaire"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -4429,20 +4457,36 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename images/filtrage/pacman.png
-	width 25line%
+	filename images/morphoMath/binarySet/binary-set.png
+	width 30text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ensemble binaire 
+\begin_inset Formula $X$
+\end_inset
+
+ et élément structurant 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -4450,14 +4494,38 @@ status open
 \end_layout
 
 \end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename images/filtrage/pacmanDilationOvr.png
-	width 25line%
+	filename images/morphoMath/binarySet/binary-dilation-principle.png
+	width 30text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dilatation de 
+\begin_inset Formula $X$
+\end_inset
+
+ par 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -4465,65 +4533,43 @@ status open
 \end_layout
 
 \end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename images/filtrage/pacmanDilation2Ovr.png
-	width 25line%
+	filename images/morphoMath/binarySet/binary-erosion-principle.png
+	width 30text%
 
 \end_inset
 
 
 \end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename images/filtrage/pacmanErosionOvr.png
-	width 25line%
+Érosion de 
+\begin_inset Formula $X$
+\end_inset
 
+ par 
+\begin_inset Formula $B$
 \end_inset
 
 
 \end_layout
 
 \end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename images/filtrage/pacmanErosion2Ovr.png
-	width 25line%
-
-\end_inset
 
 
 \end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
 
 \end_inset
 
@@ -4536,7 +4582,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Erosion-Dilatation"
+name "fig:Erosion-Dilatation-Binaire"
 
 \end_inset
 
@@ -4550,11 +4596,14 @@ status open
 
 \end_inset
 
-Érosion et dilatation d'une image synthétique.
- En haut : image d'origine, et résultat d'une dilatation avec deux disques
- de taille croissante.
- En bas : résultat d'une érosion avec les mêmes éléments structurants.
- Le contour de la forme d'origine est affiché en surimpression.
+Dilatation et érosion morphologiques d'un ensemble binaire, en utilisant
+ un élement structurant 
+\begin_inset Formula $B$
+\end_inset
+
+ en forme de disque.
+ Dans les deux cas, le contour de la forme d'origine est affiché en surimpressio
+n.
 \end_layout
 
 \end_inset
@@ -4583,7 +4632,10 @@ L'
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Erosion-Dilatation"
+reference "fig:Erosion-Dilatation-Binaire"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -4598,20 +4650,7 @@ on d'un filtre minimum, tandis que la dilatation est équivalente à l'applicati
  d'un filtre maximum.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Subsection
-Gradient et Laplacien morphologiques
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
+\begin_layout Subsubsection
 Ouverture et fermeture
 \end_layout
 
@@ -4634,16 +4673,21 @@ ouverture morphologique
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Ouverture-Fermeture"
+reference "fig:Ouverture-Fermeture-Binaire"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
 ).
- 
 \end_layout
 
 \begin_layout Standard
-L'ouverture et la fermeture morphologique ont une propriété d'idempotence
+L'ouverture et la fermeture morphologique ont une propriété 
+\series bold
+d'idempotence
+\series default
  : le résultat ne change pas si on applique plusieurs fois l'opérateur,
  il suffit de l'appliquer une seule fois.
 \end_layout
@@ -4656,19 +4700,36 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename images/filtrage/pacmanClosingOvr.png
-	width 25line%
+	filename images/morphoMath/binarySet/binary-opening-principle.png
+	width 30text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dilatation de 
+\begin_inset Formula $X$
+\end_inset
+
+ par 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -4676,56 +4737,43 @@ status open
 \end_layout
 
 \end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename images/filtrage/pacmanClosing2Ovr.png
-	width 25line%
+	filename images/morphoMath/binarySet/binary-closing-principle.png
+	width 30text%
 
 \end_inset
 
 
 \end_layout
 
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
+\begin_layout Plain Layout
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename images/filtrage/pacmanOpeningOvr.png
-	width 25line%
+Érosion de 
+\begin_inset Formula $X$
+\end_inset
 
+ par 
+\begin_inset Formula $B$
 \end_inset
 
 
 \end_layout
 
 \end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename images/filtrage/pacmanOpening2Ovr.png
-	width 25line%
-
-\end_inset
 
 
 \end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
 
 \end_inset
 
@@ -4738,7 +4786,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Ouverture-Fermeture"
+name "fig:Ouverture-Fermeture-Binaire"
 
 \end_inset
 
@@ -4752,10 +4800,14 @@ Ouverture et fermeture morphologiques
 
 \end_inset
 
-Ouverture et fermeture morphologique appliquées sur une image synthétique.
- En haut : fermeture, en bas : ouverture.
- On utilise des éléments structurants en forme de disque, avec un rayon
- plus grand pour les images de droite.
+Ouverture et fermeture morphologiques d'un ensemble binaire, en utilisant
+ un élement structurant 
+\begin_inset Formula $B$
+\end_inset
+
+ en forme de disque.
+ Dans les deux cas, le contour de la forme d'origine est affiché en surimpressio
+n.
 \end_layout
 
 \end_inset
@@ -4775,7 +4827,7 @@ L'ouverture et la fermeture morphologique changent relativement peu la forme
  particules isolées, ou les petits trous à l'intérieur des structures.
  On les utilise donc souvent pour nettoyer le résultat d'une binarisation.
  Le résultat d'une ouverture ou d'une fermeture peut aussi être comparé
- à l'image d'origine : c'est la base des opération de top-hat et de bottom-hat.
+ à l'image d'origine : c'est la base des opérations de top-hat et de bottom-hat.
 \end_layout
 
 \begin_layout Standard
@@ -4783,7 +4835,33 @@ L'ouverture et la fermeture morphologique changent relativement peu la forme
 status open
 
 \begin_layout Subsection
-White & black top hat ici
+Morpho math en niveaux de gris
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Subsection
+Gradient et Laplacien morphologiques
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Subsection
+White & black top-hats
 \end_layout
 
 \end_inset
@@ -4873,16 +4951,6 @@ Dilatation et fermeture morphologique sur une image de faisceau de maïs
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Subsection
-Top-hat et bottom-hat
 \end_layout
 
 \end_inset
