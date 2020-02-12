@@ -155,7 +155,7 @@ customHeadersFooters
 \paragraph_indentation default
 \is_math_indent 0
 \math_numbering_side default
-\quotes_style swiss
+\quotes_style french
 \dynamic_quotes 0
 \papercolumns 1
 \papersides 2
@@ -4359,7 +4359,7 @@ La
 \series bold
 morphologie mathématique
 \series default
- est une classe d'opérateur de traitements d'images qui a été développée
+ est une classe d'opérateurs de traitement d'images qui a été développée
  à l'origine pour des images binaires, mais qui a depuis été étendue aux
  images en niveaux de gris 
 \begin_inset CommandInset citation
@@ -4835,6 +4835,14 @@ L'ouverture et la fermeture morphologique changent relativement peu la forme
 status open
 
 \begin_layout Subsection
+Dicrétisation des éléments structurants
+\end_layout
+
+\begin_layout Plain Layout
+Elements structurants en forme de carré, segments V et H, losange, octogone
+\end_layout
+
+\begin_layout Subsection
 Morpho math en niveaux de gris
 \end_layout
 
@@ -5111,7 +5119,7 @@ maxima régionaux
  comme des régions composées d'un ensemble connecté de pixels ayant tous
  la même valeur, et dont les voisins ont des valeurs strictement inférieure.
  Les minima régionaux sont définis de manière symétrique comme des régions
- dont les voisins ont tous des valeurs strictement supérieure à celle de
+ dont les voisins ont tous des valeurs strictement supérieures à celle de
  la région.
 \end_layout
 
@@ -5762,7 +5770,7 @@ Un artefact courant en microscopie optique est d'avoir le centre de l'image
 \begin_layout Standard
 Les méthodes de correction classiques consistent à combiner une image de
  fond avec l'image observée.
- L'image de fond peut être une image de calibration acquise au prélable,
+ L'image de fond peut être une image de calibration acquise au préalable,
  avant d'observer l'échantillon.
  Si l'image de calibration est obtenue en observant une lame vide, les différenc
 es d'intensité observées sont alors dues uniquement aux différences d'illuminati
@@ -7052,6 +7060,16 @@ reference "fig:Carte-des-distances"
 \end_inset
 
 ).
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+changer pour une image de feuille.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8240,6 +8258,12 @@ reference "fig:Mesure-Perimetre-Naive"
 \end_inset
 
 ).
+ Cette méthode n'est cependant pas très précise.
+ Si on considère par exemple l'image d'un disque, on obtiendra la même mesure
+ de périmètre pour le disque que pour le carré contenant le disque, et ceci
+ quelle que soit la résolution de l'image.
+ On peut imaginer des pondérations pour les pixels diagonaux, mais cela
+ ne résout pas le problème.
 \end_layout
 
 \begin_layout Standard
@@ -8253,7 +8277,15 @@ status open
 \begin_inset Graphics
 	filename images/analyse/discreteDisk2.png
 	lyxscale 75
-	width 6cm
+	height 5cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/analyse/crofton-principle-2d.png
+	lyxscale 75
+	height 5cm
 
 \end_inset
 
@@ -8280,9 +8312,11 @@ Mesure du périmètre
 
 \end_inset
 
-Méthode naïve pour déterminer le périmètre.
- On obtient le même périmètre pour le cercle et pour le carré contenant
- le cercle.
+Mesure du périmètre d'un objet binaire.
+ Une méthode imprécise consiste à compter les pixels du bord : on obtient
+ le même périmètre pour le cercle et pour le carré contenant le cercle.
+ Une méthode plus précise consiste à compter les intersections avec des
+ droites d'orientations variées.
 \end_layout
 
 \end_inset
@@ -8293,15 +8327,6 @@ Méthode naïve pour déterminer le périmètre.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Cette méthode n'est cependant pas très précise.
- Si on considère par exemple l'image d'un disque, on obtiendra la même mesure
- de périmètre pour le disque que pour le carré contenant le disque, et ceci
- quelle que soit la résolution de l'image.
- On peut imaginer des pondérations pour les pixels diagonaux, mais cela
- ne résout pas le problème.
 \end_layout
 
 \begin_layout Standard
@@ -8466,7 +8491,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/analyse/diametreFeret.png
+	filename images/analyse/demoShape-maxFeret.png
 	width 8cm
 
 \end_inset
@@ -8567,7 +8592,7 @@ Cette mesure peut facilement s'étendre aux particules observées dans des
 \end_layout
 
 \begin_layout Subsection
-Moments géométriques et ellipse d'inertie
+Moments géométriques et ellipse équivalente
 \end_layout
 
 \begin_layout Standard
@@ -8643,12 +8668,12 @@ y_{c} & = & \frac{m_{01}}{m_{00}}
 \end_layout
 
 \begin_layout Subsubsection
-Ellipse d'inertie équivalente
+Ellipse équivalente
 \end_layout
 
 \begin_layout Standard
 En pratique, on utilise rarement les moments, mais plutôt des valeurs dérivées
- qui permettent de calculer l'inertie de la particule.
+ qui permettent de résumer l'information sur la particule.
  On utilise en général les moments d'ordre 
 \begin_inset Formula $2$
 \end_inset
@@ -8725,7 +8750,7 @@ Les paramètres synthétiques obtenus sont :
 \end_layout
 
 \begin_layout Itemize
-la position du centre d'inertie
+la position du centre de gravité
 \end_layout
 
 \begin_layout Itemize
@@ -9630,7 +9655,7 @@ Comme en 2D, il est possible de définir des paramètres de forme pour des
 \begin_inset Formula 
 \begin{eqnarray*}
 f_{1} & = & 36\pi\frac{V^{2}}{S^{3}}\\
-f_{2} & = & \frac{6}{\pi}\frac{V^{2}}{S^{3}}\\
+f_{2} & = & \frac{6}{\pi}\frac{V}{B^{3}}\\
 f_{3} & = & \frac{1}{\pi}\frac{S}{B^{2}}
 \end{eqnarray*}
 
@@ -9640,7 +9665,7 @@ Ces paramètres ont les mêmes défauts que le déficit isopérimétrique : ils
  sont très sensibles aux erreurs de mesures faites sur la surface ou l'épaisseur
  moyenne, et leur interprétation est difficile.
  Une autre famille de paramètres se base sur les rapports des longueurs
- des axes de l'ellipsoïde d'inertie.
+ des axes de l'ellipsoïde équivalent.
 \begin_inset Formula 
 \begin{eqnarray*}
 r_{12} & = & r_{1}/r_{2}\\
@@ -9650,9 +9675,9 @@ r_{23} & = & r_{2}/r_{3}
 
 \end_inset
 
-L'avantage des paramètres de forme basés sur l'ellipse d'inertie est qu'ils
- sont assez peu sensibles aux erreurs de segmentation sur la frontière pour
- décrire la forme générale de particules.
+Un avantage des paramètres de forme basés sur l'ellipsoïde équivalent est
+ qu'ils sont assez peu sensibles aux erreurs de segmentation sur la frontière
+ pour décrire la forme générale de particules.
  
 \end_layout
 
