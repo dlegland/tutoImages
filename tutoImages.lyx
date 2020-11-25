@@ -6,14 +6,12 @@
 \origin unavailable
 \textclass scrreprt
 \begin_preamble
-%\usepackage{sfmath}
+
 \usepackage{xcolor}
 \definecolor{bl}{rgb}{0.0,0.2,0.6} 
 
 
 % package that modifies style of section headers
-%\usepackage{sectsty}
-
 \addtokomafont{chapter}{\color{bl}\scshape \selectfont}
 \addtokomafont{section}{\color{bl}\scshape \selectfont}
 \addtokomafont{subsection}{\color{bl}\scshape \selectfont}
@@ -36,54 +34,50 @@
 \renewcommand{\abstracttextfont}{\color{bl} \small \slshape }	% slanted text
 
 
-%% Haut a gauche - page g : page (bf), page d : section (sl) - plain : rien
-%\lhead[\fancyplain{}{\bf\thepage}]{\fancyplain{}{\sl\rightmark}}
-%% Haut a droite - page g : chapitre (sl), page d : page (bf) - plain : rien
-%\rhead[\fancyplain{}{\sl\leftmark}]{\fancyplain{}{\bf\thepage}}
-%% Bas centré - plain : page (bf) - sinon rien
-%\cfoot[\fancyplain{\bf\thepage}{}]{\fancyplain{\bf\thepage}{}}
-%\chead{}\lfoot{}\rfoot{}
-%% Header depasse cote ext (nb page)
-%\addtolength{\headwidth}{7mm}
+% Custom headers and footers using KOMA-Script
+\usepackage{scrlayer-scrpage}
+\usepackage{lastpage}	% for page numbering	
 
+% Left header: chapter title on even pages
+\lehead{\slshape\leftmark}
+\lohead{}
+% Center header: empty
+%\chead{}
+% Right header: section title on odd pages
+\rehead{}
+\rohead{\slshape\rightmark}
 
-
-% Custom headers and footers
-\usepackage{fancyhdr}
-% Enabling the custom headers/footers
-\pagestyle{fancy}
-\usepackage{lastpage}	
-% Header (empty)
-% Haut a gauche - page g : chapitre (sl), page d : page (bf) - plain : rien
-\lhead[\fancyplain{}{\slshape\leftmark}]{\fancyplain{}{}}
-% rien au centre
-\chead{}
-% Haut a droite - page g : page (bf), page d : section (sl) - plain : rien
-\rhead[\fancyplain{}{}]{\fancyplain{}{\slshape\rightmark}}
-
-% Footer (you may change this to your own needs)
-\lfoot{\footnotesize \jobname.lyx}
+% Outer footer (left of even pages, right of odd pages)
+\KOMAoptions{footsepline=on}
+\ofoot[\footnotesize page \thepage\ / \pageref{LastPage}]{\footnotesize page \thepage\ / \pageref{LastPage}}
+% Center footer: empty
 \cfoot{}
-\rfoot{\footnotesize page \thepage\ sur \pageref{LastPage}}	% "Page 1 of 2"
-\renewcommand{\headrulewidth}{0.0pt}
-\renewcommand{\footrulewidth}{0.4pt}
+% Inner footer (right of even pages, left of odd pages)
+\ifoot[\footnotesize \jobname]{\footnotesize \jobname}
 
-% chap a gauche sans numero, rien a droite
-%\renewcommand{\chaptermark}[1]{\markboth{\textit{#1}}{}}
+% left chapter no number, nothing on the right
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter\ #1}{}}
-% section à droite avec numero
+% right section with number
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-
 
 % 
 \usepackage[format=plain,labelfont=bf]{caption}
 \captionsetup[figure]{name=Figure}
 \DeclareCaptionLabelSeparator{colon}{: }
+
+% To add mini-TOC in the beginning of each chapter
+% The 'nohints' option is to prevent a conflict with the lastpage package, 
+% resulting in an extra empty page at the end of the document.
+\usepackage[nohints]{minitoc}
+
+
+
+% some info for populating document title page
+\author{D. Legland}
+\date{\today}
 \end_preamble
+\options latin9,utf8
 \use_default_options true
-\begin_modules
-customHeadersFooters
-\end_modules
 \maintain_unincluded_children false
 \language french
 \language_package default
@@ -91,7 +85,7 @@ customHeadersFooters
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
-\font_typewriter "default" "default"
+\font_typewriter "beramono" "default"
 \font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
@@ -159,7 +153,7 @@ customHeadersFooters
 \dynamic_quotes 0
 \papercolumns 1
 \papersides 2
-\paperpagestyle fancy
+\paperpagestyle default
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -180,27 +174,6 @@ Le traitement d'images
 
 pour les nuls
 \begin_inset Quotes crd
-\end_inset
-
-
-\end_layout
-
-\begin_layout Author
-D.
- Legland
-\end_layout
-
-\begin_layout Date
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-today
-\end_layout
-
 \end_inset
 
 
@@ -233,6 +206,22 @@ Le contenu de ce document est destiné à être transféré sur le site internet
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+dominitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
 
@@ -244,6 +233,13 @@ LatexCommand tableofcontents
 \begin_layout Standard
 \begin_inset FloatList figure
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -457,6 +453,42 @@ Manipuler et explorer les images numériques
 
 \begin_layout Chapter
 Qu'est ce qu'une image numérique ?
+\end_layout
+
+\begin_layout Standard
+Ce chapitre présente la nature des images telle qu'elles sont manipulées
+ par les logiciels.
+ Les questions de discrétisation de l'espace sont évoquées, puis quelques
+ types d'images classiques sont présentés.
+ Le chapitre se termine par une discussion sur les formats de fichiers adaptés
+ pour le traitement des images.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Images matricielles et vectorielles
 \end_layout
 
 \begin_layout Standard
@@ -1758,6 +1790,29 @@ e la valeur en niveau de gris moyenne dans une région), les applications
  classiques de visualisation ne suffisent plus.
  Cette section a donc pour but de donner quelques clés pour éviter les mauvaises
  surprises.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -3127,6 +3182,29 @@ filtres
  à analyser.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Les différents types de filtres
 \end_layout
@@ -3328,10 +3406,6 @@ reference "fig:Tables-de-correspondance"
 Le filtrage linéaire
 \end_layout
 
-\begin_layout Section
-Principe des filtres linéaires
-\end_layout
-
 \begin_layout Standard
 Les 
 \series bold
@@ -3342,9 +3416,39 @@ filtres linéaires
 \end_layout
 
 \begin_layout Standard
-Dans le cas d'un filtrage linéaire de l'image, les opérations impliquées
- ne sont que des additions (ou soustractions) et multiplications (ou divisions)
- par des valeurs constantes.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Principe des filtres linéaires
+\end_layout
+
+\begin_layout Standard
+Dans le cas d'un 
+\series bold
+filtrage linéaire
+\series default
+ de l'image, les opérations impliquées ne sont que des additions (ou soustractio
+ns) et multiplications (ou divisions) par des valeurs constantes.
  En pratique, cela consiste à réaliser une moyenne pondérée de la valeur
  des pixels du voisinage.
  Par exemple, une opération courante consiste à remplacer la valeur de chaque
@@ -4386,6 +4490,29 @@ TODO: arriver à intégrer plus d'exemples en NDG
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Filtrage morphologique
 \end_layout
@@ -4966,6 +5093,13 @@ Dilatation et fermeture morphologique sur une image de faisceau de maïs
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Reconstruction morphologique
 \end_layout
@@ -5383,6 +5517,22 @@ Le traitement des images
 
 \begin_layout Chapter
 Filtrage et restauration d'images
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -6083,6 +6233,29 @@ identifier des régions
 es emblématiques de cette approche.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Seuillage
 \end_layout
@@ -6193,6 +6366,16 @@ reference "fig:Segmentation-Niveaux-Gris"
 \end_inset
 
 ).
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Détailler quelques méthodes: Otsu, max entropy...
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -6493,6 +6676,10 @@ ou sinon Ilastix
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
 \begin_layout Section
 Détection de contours (
 \shape italic
@@ -6500,10 +6687,6 @@ edge detection
 \shape default
 )
 \end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
 
 \begin_layout Subsection
 Laplacien
@@ -7018,6 +7201,29 @@ Ce chapitre regroupe plusieurs techniques spécifiques aux images binaires,
  couramment employées suite à des outils de segmentation, soit pour améliorer
  le résultat de la segmentation, ou pour simplifier la structures des objets
  visibles dans l'image.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7947,6 +8153,22 @@ Analyse
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -7988,7 +8210,7 @@ intensités en fonction de distances
 \end_layout
 
 \begin_layout Standard
-L'analyse d'image a pour but d'extraire des paramètres quantitatifs des
+L'analyse d'images a pour but d'extraire des paramètres quantitatifs des
  images.
  Ces paramètres peuvent ensuite être soumis à une analyse statistique plus
  poussée, et/ou être confrontés à d'autres paramètres issus de méthodes
@@ -8056,8 +8278,9 @@ analyse de texture d'image
 
 \begin_layout Standard
 Il peut être utile de rappeler que dans tous les cas, il est nécessaire
- de disposer de la résolution de l'image.
- Cette résolution peut être fournie par le dispositif d'acquisition (microscope...).
+ de disposer de la calibration spatiale de l'image.
+ Cette calibration peut être fournie par le dispositif d'acquisition (microscope...
+).
  Dans le cas inverse, l'utilisation de mires de calibration permet de connaître
  a posteriori la résolution des images.
 \end_layout
