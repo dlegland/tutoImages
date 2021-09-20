@@ -164,19 +164,11 @@
 \begin_body
 
 \begin_layout Title
-Le traitement d'images 
+Petit guide du traitement d'images 
 \begin_inset Newline newline
 \end_inset
 
-
-\begin_inset Quotes cld
-\end_inset
-
-pour les nuls
-\begin_inset Quotes crd
-\end_inset
-
-
+à l'usage des biologistes
 \end_layout
 
 \begin_layout Abstract
@@ -432,6 +424,18 @@ Le traitement d'images s'inscrit dans une chaîne de traitement plus large,
  et préparation du matériel étudié, réglage des conditions d'acquisition,
  contrôle de l'éclairage...), et en aval une analyse statistique des résultats
  obtenus.
+\end_layout
+
+\begin_layout Standard
+Ce document est organisé autour de trois parties.
+ Une première partie présente la représentation informatisée des images,
+ et les différentes modalités d'exploration des images parfois multidimensionnel
+les.
+ Une deuxième partie, plus technique, présente les outils classiques du
+ traitement d'images.
+ La troisième partie présente l'application de ces outils dans le cadre
+ des différentes étapes de l'analyse d'images : le pré-traitement, la segmentati
+on, et l'analyse des images.
 \end_layout
 
 \begin_layout Standard
@@ -1071,6 +1075,19 @@ Images binaires
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+introduire également images label, plus références aux chapitres spécifiques
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Les 
 \series bold
 images binaires
@@ -1530,14 +1547,14 @@ es réelle et imaginaire.
 \end_layout
 
 \begin_layout Section
-Formats d'image
+Formats de fichiers d'image
 \end_layout
 
 \begin_layout Standard
 La sauvegarde des images sous forme de fichier nécessite de stocker non
- seulement la liste des valeurs des pixels, mais aussi la taille de l'image
- et la manière dont sont codés les pixels.
- 
+ seulement la valeur de chaque pixel, mais aussi certaines méta-données
+ telles que la taille de l'image, la manière dont sont encodées les valeurs,
+ voire des informations de calibration spatiale.
 \end_layout
 
 \begin_layout Standard
@@ -1730,9 +1747,8 @@ Quelques formats
 \end_layout
 
 \begin_layout Standard
-Il existent une grande quantité de formats de fichier d'image, mais seuls
- quelques-uns sont réellement intéressants en pratique.
- 
+Il existent une grande quantité de formats de fichier d'image, dont quelques-uns
+ sont particulièrement répandus :
 \end_layout
 
 \begin_layout Itemize
@@ -3146,31 +3162,6 @@ Les outils du traitement d'images
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ajouter chapitres 
-\end_layout
-
-\begin_layout Itemize
-le filtrage fréquentiel
-\end_layout
-
-\begin_layout Itemize
-classification non supervisée et apprentissage automatique
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Les opérateurs du traitement d'image
-\end_layout
-
-\begin_layout Standard
 Le but du filtrage d'image est d'améliorer leur aspect, en rendant plus
  visibles les structures d'intérêt, tout en réduisant l'influence des informatio
 ns parasites (bruit de l'image).
@@ -3180,33 +3171,6 @@ filtres
 \series default
 , qui vont transformer l'image de départ en une image filtrée, plus facile
  à analyser.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-minitoc
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Les différents types de filtres
 \end_layout
 
 \begin_layout Standard
@@ -3273,133 +3237,20 @@ totalité de l'image
 status open
 
 \begin_layout Plain Layout
-Illustration ?
+Ajouter chapitres 
+\end_layout
+
+\begin_layout Itemize
+le filtrage fréquentiel
+\end_layout
+
+\begin_layout Itemize
+classification non supervisée et apprentissage automatique
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section
-Tables de correspondances (LUT)
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-cette section semble un peu perdue...
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-On peut modifier une image en calculant pour chaque pixel une nouvelle valeur
- 
-\begin_inset Formula $I'(u,v)$
-\end_inset
-
- qui ne dépend que de la valeur de départ 
-\begin_inset Formula $g=I(u,v)$
-\end_inset
-
- du pixel
-\begin_inset Formula 
-\begin{eqnarray*}
-g' & \leftarrow & f\left(g\right),\,\mbox{ou}\\
-I'\left(u,v\right) & \leftarrow & f\left(I\left(u,v\right)\right)
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Le nombre de valeurs de départ étant fixe (
-\begin_inset Formula $256$
-\end_inset
-
- pour les images courantes), on peut précalculer les valeurs finales et
- stocker le résultat dans un tableau, appelé 
-\series bold
-table de correspondance,
-\series default
- ou 
-\shape italic
-\lang english
-look-up table
-\shape default
-\lang french
- (LUT).
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/filtrage/liftingbodyInvDecHistoRes.png
-	width 12cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Tables-de-correspondance"
-
-\end_inset
-
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Tables de correspondances (LUT)
-\end_layout
-
-\end_inset
-
-Application de deux tables de correspondances (LUT) sur l'image de départ
- : une inversion, et une re-quantification sur 8 niveaux de gris.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Tables-de-correspondance"
-
-\end_inset
-
- montre deux LUT, et le résultat de leur application sur l'image de départ.
 \end_layout
 
 \begin_layout Chapter
@@ -3411,8 +3262,15 @@ Les
 \series bold
 filtres linéaires
 \series default
- sont une classe particulière de filtres, dont les propriétés mathématiques
- les rendent intéressants à utiliser.
+ sont une classe particulière de filtres basés sur une opération de 
+\series bold
+convolution
+\series default
+.
+ Les filtres linéaires sont utilisés aussi bien pour lisser les images que
+ pour détecter des structures particulières (bords, spots...).
+ Les propriétés mathématiques de la convolution permettent des implémentations
+ souvent rapides.
 \end_layout
 
 \begin_layout Standard
@@ -4485,6 +4343,10 @@ status open
 TODO: arriver à intégrer plus d'exemples en NDG
 \end_layout
 
+\begin_layout Plain Layout
+cd manuel de MorphoLibJ...
+\end_layout
+
 \end_inset
 
 
@@ -4514,7 +4376,7 @@ minitoc
 \end_layout
 
 \begin_layout Section
-Filtrage morphologique
+Principes
 \end_layout
 
 \begin_layout Standard
@@ -4533,10 +4395,6 @@ Les opérateurs morphologiques travaillent aussi sur le voisinage local de
 \end_layout
 
 \begin_layout Subsection
-Principes
-\end_layout
-
-\begin_layout Subsubsection
 Érosion et dilatation
 \end_layout
 
@@ -4777,7 +4635,7 @@ on d'un filtre minimum, tandis que la dilatation est équivalente à l'applicati
  d'un filtre maximum.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Ouverture et fermeture
 \end_layout
 
@@ -5004,7 +4862,7 @@ White & black top-hats
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Exemple sur une image en niveaux de gris
 \end_layout
 
@@ -5093,11 +4951,8 @@ Dilatation et fermeture morphologique sur une image de faisceau de maïs
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
+\begin_layout Chapter
+Filtres connexionnistes
 \end_layout
 
 \begin_layout Section
@@ -5489,21 +5344,948 @@ permet d'initiliser une ligne de partage des eaux
 
 \end_layout
 
+\begin_layout Chapter
+Traitement des images binaires
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Images binaires"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ce chapitre regroupe plusieurs techniques spécifiques aux images binaires,
+ couramment employées suite à des outils de segmentation, soit pour améliorer
+ le résultat de la segmentation, ou pour simplifier la structures des objets
+ visibles dans l'image.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Note Note
 status open
 
+\begin_layout Subsection
+étiquetage des composantes connexes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
-Squelettisation
+Carte des distances
+\end_layout
+
+\begin_layout Standard
+La carte des distances (
+\shape italic
+\lang english
+distance map
+\shape default
+\lang french
+), ou fonction distance, est un outil très employé en traitement d'images.
+ Elle consiste à calculer, pour chaque pixel, quelle est la distance la
+ plus proche à une structure donnée.
+ Par exemple, on peut calculer la distance au bord le plus proche pour les
+ pixels à l'intérieur d'une particule (Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Carte-des-distances"
+
+\end_inset
+
+).
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+changer pour une image de feuille.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/binaires/circles-filled-inv.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/binaires/circles-filled-dist-rgb.png
+	width 6cm
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Plain Layout
-Objectif de cette section : rappeler ce qu'est un squelette, et présenter
- les différents algorithmes
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Carte-des-distances"
+
+\end_inset
+
+Carte des distances d'une image binaire
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La carte des distances a de nombreuses applications :
+\end_layout
+
+\begin_layout Itemize
+calcul du squelette d'une particule
+\end_layout
+
+\begin_layout Itemize
+calcul de l'épaisseur moyenne le long du squelette
+\end_layout
+
+\begin_layout Itemize
+calcul des zones d'influences de petits objets
+\end_layout
+
+\begin_layout Itemize
+séparation de particules coalescentes
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Subsection
+Distances de chanfrein
 \end_layout
 
 \begin_layout Plain Layout
-voir avec la section sur les images binaires
+Pour l'implémentation, on utilise une propagation de la fonction distance.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nettoyage des résultats de segmentation
+\end_layout
+
+\begin_layout Standard
+De nombreux outils sont disponibles pour nettoyer les résultats obtenus
+ après segmentation.
+\end_layout
+
+\begin_layout Subsection
+Suppression des petits objets
+\end_layout
+
+\begin_layout Standard
+L'application d'un seuillage sur une image binaire produit souvent de nombreux
+ faux positifs, correspondant à des variations d'intensité dans le fond
+ de l'image qui sont détectés comme structure d'intérêt
+\end_layout
+
+\begin_layout Subsubsection
+Filtrage morphologique
+\end_layout
+
+\begin_layout Standard
+Une manière simple de supprimer ces artefacts est d'appliquer une ouverture
+ morphologique binaire à l'image seuillée.
+ Les particules dont la taille est inférieure à celle de l'élément structurant
+ seront supprimées, tandis que les particules correspondant aux structures
+ d'intérêt seront globalement préservées.
+\end_layout
+
+\begin_layout Standard
+Si la forme des particules est très altérée par l'ouverture (ce qui peut
+ arriver avec un élément structurant carré de grande taille), une possibilité
+ est de rajouter une reconstruction géodésique, en utilisant comme marqueur
+ l'image après ouverture, et comme masque l'image seuillée avant ouverture.
+\end_layout
+
+\begin_layout Subsubsection
+Ouverture par attribut
+\end_layout
+
+\begin_layout Standard
+Une alternative aux filtres morphologiques est d'utiliser une 
+\begin_inset Quotes cld
+\end_inset
+
+ouverture par attribut
+\begin_inset Quotes crd
+\end_inset
+
+.
+ Le principe est de choisir un paramètre descriptif, et une plage de valeurs
+ correspondant aux particules que l'on veut garder.
+ Un choix typique est l'aire, et une valeur minimum correspondant aux particules
+ 
+\begin_inset Quotes cld
+\end_inset
+
+suffisamment grandes
+\begin_inset Quotes crd
+\end_inset
+
+ (Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Ouverture-Par-Attribut"
+
+\end_inset
+
+).
+ On calcule le ou les paramètres choisis pour chacune des particules identifiées
+, et on ne garde que les particules pour lesquelles les paramètres sont
+ dans la plage de validité.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ajouter une figure pour comparer avec ouverture ?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/binaires/riceBKRgb.tif
+	width 5cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/binaires/riceBKAORgb.tif
+	width 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Ouverture-Par-Attribut"
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Ouverture par attribut sur une image étiquetée.
+\end_layout
+
+\end_inset
+
+Ouverture par attribut sur une image étiquetée.
+ Seules les particules d'une taille supérieure à 15 pixels ont été gardées.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cette méthode est implémentée dans ImageJ, dans les options de la commande
+ 
+\begin_inset Quotes cld
+\end_inset
+
+Analyze Particles...
+\begin_inset Quotes crd
+\end_inset
+
+, mais uniquement pour les paramètres de taille et de circularité.
+ Sous Matlab, on peut utiliser la fonction 
+\begin_inset Quotes cld
+\end_inset
+
+bwareaopen
+\begin_inset Quotes crd
+\end_inset
+
+, ou bien passer par la fonction 
+\begin_inset Quotes cld
+\end_inset
+
+regionprops
+\begin_inset Quotes crd
+\end_inset
+
+ pour un traitement plus précis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ouverture par reconstruction
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Suppression des particules touchant les bords
+\end_layout
+
+\begin_layout Standard
+En imagerie microscopique, il arrive couramment que les objets d'intérêt
+ ne soient pas entièrement visibles dans l'image, et qu'une partie soit
+ tronquée.
+ Une pratique courante consiste donc à supprimer les objets qui touchent
+ le bord de l'image (Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Suppression-Des-Borde"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/binaires/riceBinRgb.tif
+	width 5cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/binaires/riceBKRgb.tif
+	width 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Suppression-Des-Borde"
+
+\end_inset
+
+Suppression des particules touchant les bords.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En pratique, la suppression s'opère à l'aide d'une reconstruction géodésique,
+ avec comme marqueur l'intersection des objets avec le bord de l'image,
+ et comme masque l'image binaire elle-même.
+ On obtient comme résultat l'image des objets touchant le bord, qu'il suffit
+ ensuite de soustraire de l'image d'origine.
+ Cet outil est souvent implémenté comme une fonction à part entière dans
+ les logiciels (fonction imclearborder sous Matlab, option de la fonction
+ Analyze Particles sous ImageJ, outil 
+\begin_inset Quotes cld
+\end_inset
+
+borderKill
+\begin_inset Quotes crd
+\end_inset
+
+...).
+\end_layout
+
+\begin_layout Standard
+Il faut toutefois prendre garde qu'en opérant ainsi, on introduit un biais
+ dans les mesures qui seront faites par la suite, car les paramètres seront
+ mesurés uniquement sur les particules entièrement visibles.
+ Ainsi, plus une particule est petite, plus sa probabilité d'être observée
+ sera importante, et les mesures globales seront biaisées en faveur des
+ petites particules.
+ Une possibilité d'obtenir des mesures plus proches de la réalité est d'applique
+r la correction de Miles-Lantuéjoul, qui pondère les mesures sur les particules
+ en fonction de leur probabilité d'échantillonnage.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+tite figure ?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Subsection
+Remplissage des trous
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Codage des contours
+\end_layout
+
+\begin_layout Standard
+On considère, pour chaque région ou particule de l'image binaire, la succession
+ des pixels qui forment son contour.
+ Au lieu de stocker l'ensemble des coordonnées de chaque pixel, on code
+ la direction du pixel suivant, en utilisant une valeur entre 0 et 7.
+ On obtient ainsi le 
+\series bold
+code de Freeman
+\series default
+.
+\end_layout
+
+\begin_layout Section
+Séparation de particules se recouvrant
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Séparation-de-particules"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+pourrait trouver une image de démo plus adaptée
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La ligne de partage des eaux est souvent utilisée pour séparer des particules
+ qui se touchent après un seuillage (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Watershed-binaire"
+
+\end_inset
+
+-a).
+ On commence par calculer la fonction distance par rapport au complémentaire
+ des particules.
+ Les maximas de l'image résultat sont situés vers le centre des particules.
+ On inverse cette fonction distance, et on filtre un peu : les minimas sont
+ alors les centres des particules (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Watershed-binaire"
+
+\end_inset
+
+-b).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/segment/circles-black.png
+	width 4cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/segment/circles-wat-ovr.png
+	width 4cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/segment/circles-sep.png
+	width 4cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Watershed-binaire"
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Séparation de particules
+\end_layout
+
+\end_inset
+
+Application de la ligne de partage des eaux pour séparer des particules
+ connectées.
+ (a) Image d'origine (b) fonction distance inversée et ligne de partage
+ des eaux sur la fonction distance (c) séparation des particules.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On applique alors l'algorithme de ligne de partage des eaux.
+ Les lignes de crêtes détectées sont les séparations entre les particules
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Watershed-binaire"
+
+\end_inset
+
+-c).
+ En combinant avec l'image binaire d'origine, on arrive à séparer la plupart
+ des particules (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Watershed-binaire"
+
+\end_inset
+
+-d).
+\end_layout
+
+\begin_layout Section
+Squeletisation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+objectif de cette section : présenter le principe de la squeletisation,
+ et son utilisation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La squeletisation consiste à supprimer certains pixels pour ne garder que
+ ceux situés le long des axes principaux.
+ L'objectif est de garder la forme générale de la particule, afin de pouvoir
+ en extraire des informations de nature topologique : points terminaux (extrémit
+és du squelette), les points multiples (croisements), points formant les
+ branches...
+ Quelques exemples de squelettes sont montrés sur la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Squeletisation-abcd"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/binaires/abcd-bin.png
+	width 4cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/binaires/skel-abcd-MatlabSkel-bin.png
+	width 4cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/binaires/skel-abcd-MatlabSkel-ovr.png
+	width 4cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Squeletisation-abcd"
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Squeletisation d'une image binaire.
+\end_layout
+
+\end_inset
+
+Squeletisation d'une image binaire.
+ Image d'origine, résultat de la squeletisation, et superposition du squelette
+ sur l'image d'origine.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On définit le squelette dans un espace continu comme l'ensemble des points
+ de la particule qui sont situés à égale distance d'au moins deux points
+ de la frontière de l'ensemble d'intérêt 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "p. 162"
+key "Coster1989"
+literal "true"
+
+\end_inset
+
+.
+ Une définition plus formelle fait appel à l'ensemble des centres des boules
+ de rayon maximal.
+\end_layout
+
+\begin_layout Standard
+Les algorithmes de squeletisation utilisent la définition du squelette,
+ adaptée à la nature discrète des images, pour cacluler une approximation
+ du squelette euclidien.
+ On obtient une image binaire dont les structures ont une épaisseur maximale
+ d'un pixel, et qui reprennent la forme générale des particules.
+\end_layout
+
+\begin_layout Standard
+Un des problèmes souvent rencontrés est que la squeletisation est une opération
+ très sensible au bruit : une petite variation de forme peut engendrer des
+ variations importantes du squelette.
+ Cela se traduit notamment par la présence de nombreuses 
+\begin_inset Quotes cld
+\end_inset
+
+barbules
+\begin_inset Quotes crd
+\end_inset
+
+, qui relient l'axe du squelette aux petites aspérités du contour (sur les
+ parties courbes du B, par exemple).
+ Des outils dits 
+\begin_inset Quotes cld
+\end_inset
+
+d'ébarbulage
+\begin_inset Quotes crd
+\end_inset
+
+ (en anglais : 
+\shape italic
+\lang english
+pruning
+\shape default
+\lang french
+) sont parfois disponibles dans les logiciels.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/binaires/skel-abcd-MatlabSkel-ovr.png
+	width 4cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/binaires/skel-abcd-MatlabThin-ovr.png
+	width 4cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/binaires/skel-abcd-imagej-ovr.png
+	width 4cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Squeletisation-algos"
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Différents algorithmes de squeletisation.
+\end_layout
+
+\end_inset
+
+Différents algorithmes de squeletisation : résultats obtenus sous Matlab
+ (par squeletisation et amincissement homotopiques), et sous ImageJ.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un autre problème est qu'il existe de nombreux algorithmes de squeletisation
+ chacun donnant des résultats différents (voir la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Squeletisation-algos"
+
+\end_inset
+
+).
+ Les algorithmes les plus courants se basent soit sur des cartes de distance,
+ soit sur des amincissements homotopiques (amincissements successifs qui
+ préservent la topologie des particules).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+sous-sections possibles :
+\end_layout
+
+\begin_layout Itemize
+algorithmes de squeletisation
+\end_layout
+
+\begin_layout Itemize
+ébarbulage de squelette
+\end_layout
+
+\begin_layout Itemize
+analyse de squelettes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+à ajouter :
+\end_layout
+
+\begin_layout Itemize
+exploitation de collections d'images
+\end_layout
+
+\begin_layout Itemize
+fusion d'images (ou dans traitement ?)
+\end_layout
+
+\begin_layout Itemize
+bases de données d'images
 \end_layout
 
 \end_inset
@@ -5512,11 +6294,18 @@ voir avec la section sur les images binaires
 \end_layout
 
 \begin_layout Part
-Le traitement des images 
+Mise en oeuvre du traitement d'images
 \end_layout
 
 \begin_layout Chapter
-Filtrage et restauration d'images
+Amélioration et restauration d'images
+\end_layout
+
+\begin_layout Standard
+Les opérateurs décrits dans ce chapitre ont pour but d'améliorer l'aspect
+ des images, en réduisant l'effet du bruit d'acquisition ou d'artefacts
+ éventuels, ou de mettre en évidences certaines types de structures en se
+ basant sur des a priori de forme.
 \end_layout
 
 \begin_layout Standard
@@ -5572,7 +6361,141 @@ Lorsque les conditions d'acquisition d'une image en niveaux de gris sont
  mal maîtrisées, il peut arriver que l'image apparaisse trop sombre ou trop
  foncée.
  On peut améliorer l'affichage final, en modifiant l'histogramme de l'image.
+ Cela consiste à calculer une table de correspondance des niveaux de gris.
+\end_layout
+
+\begin_layout Subsection
+Tables de correspondances (LUT)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cette section est un peu perdue...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On peut modifier une image en calculant pour chaque pixel une nouvelle valeur
  
+\begin_inset Formula $I'(u,v)$
+\end_inset
+
+ qui ne dépend que de la valeur de départ 
+\begin_inset Formula $g=I(u,v)$
+\end_inset
+
+ du pixel
+\begin_inset Formula 
+\begin{eqnarray*}
+g' & \leftarrow & f\left(g\right),\,\mbox{ou}\\
+I'\left(u,v\right) & \leftarrow & f\left(I\left(u,v\right)\right)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le nombre de valeurs de départ étant fixe (
+\begin_inset Formula $256$
+\end_inset
+
+ pour les images courantes), on peut précalculer les valeurs finales et
+ stocker le résultat dans un tableau, appelé 
+\series bold
+table de correspondance,
+\series default
+ ou 
+\shape italic
+\lang english
+look-up table
+\shape default
+\lang french
+ (LUT).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/filtrage/liftingbodyInvDecHistoRes.png
+	width 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Tables-de-correspondance"
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Tables de correspondances (LUT)
+\end_layout
+
+\end_inset
+
+Application de deux tables de correspondances (LUT) sur l'image de départ
+ : une inversion, et une re-quantification sur 8 niveaux de gris.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Tables-de-correspondance"
+
+\end_inset
+
+ montre deux LUT, et le résultat de leur application sur l'image de départ.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+LUT logarithmique, correction gamma
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -7175,972 +8098,6 @@ On formalise les contraintes sur la forme et sur l'agencement des objets
 
 \begin_layout Itemize
 exemples from Descombes
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Traitement des images binaires
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "chap:Images binaires"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Ce chapitre regroupe plusieurs techniques spécifiques aux images binaires,
- couramment employées suite à des outils de segmentation, soit pour améliorer
- le résultat de la segmentation, ou pour simplifier la structures des objets
- visibles dans l'image.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-minitoc
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Subsection
-étiquetage des composantes connexes
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Carte des distances
-\end_layout
-
-\begin_layout Standard
-La carte des distances (
-\shape italic
-\lang english
-distance map
-\shape default
-\lang french
-), ou fonction distance, est un outil très employé en traitement d'images.
- Elle consiste à calculer, pour chaque pixel, quelle est la distance la
- plus proche à une structure donnée.
- Par exemple, on peut calculer la distance au bord le plus proche pour les
- pixels à l'intérieur d'une particule (Figure
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Carte-des-distances"
-
-\end_inset
-
-).
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-changer pour une image de feuille.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/binaires/circles-filled-inv.png
-	width 6cm
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/binaires/circles-filled-dist-rgb.png
-	width 6cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Carte-des-distances"
-
-\end_inset
-
-Carte des distances d'une image binaire
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La carte des distances a de nombreuses applications :
-\end_layout
-
-\begin_layout Itemize
-calcul du squelette d'une particule
-\end_layout
-
-\begin_layout Itemize
-calcul de l'épaisseur moyenne le long du squelette
-\end_layout
-
-\begin_layout Itemize
-calcul des zones d'influences de petits objets
-\end_layout
-
-\begin_layout Itemize
-séparation de particules coalescentes
-\end_layout
-
-\begin_layout Itemize
-...
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Subsection
-Distances de chanfrein
-\end_layout
-
-\begin_layout Plain Layout
-Pour l'implémentation, on utilise une propagation de la fonction distance.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Nettoyage des résultats de segmentation
-\end_layout
-
-\begin_layout Standard
-De nombreux outils sont disponibles pour nettoyer les résultats obtenus
- après segmentation.
-\end_layout
-
-\begin_layout Subsection
-Suppression des petits objets
-\end_layout
-
-\begin_layout Standard
-L'application d'un seuillage sur une image binaire produit souvent de nombreux
- faux positifs, correspondant à des variations d'intensité dans le fond
- de l'image qui sont détectés comme structure d'intérêt
-\end_layout
-
-\begin_layout Subsubsection
-Filtrage morphologique
-\end_layout
-
-\begin_layout Standard
-Une manière simple de supprimer ces artefacts est d'appliquer une ouverture
- morphologique binaire à l'image seuillée.
- Les particules dont la taille est inférieure à celle de l'élément structurant
- seront supprimées, tandis que les particules correspondant aux structures
- d'intérêt seront globalement préservées.
-\end_layout
-
-\begin_layout Standard
-Si la forme des particules est très altérée par l'ouverture (ce qui peut
- arriver avec un élément structurant carré de grande taille), une possibilité
- est de rajouter une reconstruction géodésique, en utilisant comme marqueur
- l'image après ouverture, et comme masque l'image seuillée avant ouverture.
-\end_layout
-
-\begin_layout Subsubsection
-Ouverture par attribut
-\end_layout
-
-\begin_layout Standard
-Une alternative aux filtres morphologiques est d'utiliser une 
-\begin_inset Quotes cld
-\end_inset
-
-ouverture par attribut
-\begin_inset Quotes crd
-\end_inset
-
-.
- Le principe est de choisir un paramètre descriptif, et une plage de valeurs
- correspondant aux particules que l'on veut garder.
- Un choix typique est l'aire, et une valeur minimum correspondant aux particules
- 
-\begin_inset Quotes cld
-\end_inset
-
-suffisamment grandes
-\begin_inset Quotes crd
-\end_inset
-
- (Figure
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Ouverture-Par-Attribut"
-
-\end_inset
-
-).
- On calcule le ou les paramètres choisis pour chacune des particules identifiées
-, et on ne garde que les particules pour lesquelles les paramètres sont
- dans la plage de validité.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-ajouter une figure pour comparer avec ouverture ?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/binaires/riceBKRgb.tif
-	width 5cm
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/binaires/riceBKAORgb.tif
-	width 5cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Ouverture-Par-Attribut"
-
-\end_inset
-
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Ouverture par attribut sur une image étiquetée.
-\end_layout
-
-\end_inset
-
-Ouverture par attribut sur une image étiquetée.
- Seules les particules d'une taille supérieure à 15 pixels ont été gardées.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Cette méthode est implémentée dans ImageJ, dans les options de la commande
- 
-\begin_inset Quotes cld
-\end_inset
-
-Analyze Particles...
-\begin_inset Quotes crd
-\end_inset
-
-, mais uniquement pour les paramètres de taille et de circularité.
- Sous Matlab, on peut utiliser la fonction 
-\begin_inset Quotes cld
-\end_inset
-
-bwareaopen
-\begin_inset Quotes crd
-\end_inset
-
-, ou bien passer par la fonction 
-\begin_inset Quotes cld
-\end_inset
-
-regionprops
-\begin_inset Quotes crd
-\end_inset
-
- pour un traitement plus précis.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-ouverture par reconstruction
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Suppression des particules touchant les bords
-\end_layout
-
-\begin_layout Standard
-En imagerie microscopique, il arrive couramment que les objets d'intérêt
- ne soient pas entièrement visibles dans l'image, et qu'une partie soit
- tronquée.
- Une pratique courante consiste donc à supprimer les objets qui touchent
- le bord de l'image (Figure
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Suppression-Des-Borde"
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/binaires/riceBinRgb.tif
-	width 5cm
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/binaires/riceBKRgb.tif
-	width 5cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Suppression-Des-Borde"
-
-\end_inset
-
-Suppression des particules touchant les bords.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-En pratique, la suppression s'opère à l'aide d'une reconstruction géodésique,
- avec comme marqueur l'intersection des objets avec le bord de l'image,
- et comme masque l'image binaire elle-même.
- On obtient comme résultat l'image des objets touchant le bord, qu'il suffit
- ensuite de soustraire de l'image d'origine.
- Cet outil est souvent implémenté comme une fonction à part entière dans
- les logiciels (fonction imclearborder sous Matlab, option de la fonction
- Analyze Particles sous ImageJ, outil 
-\begin_inset Quotes cld
-\end_inset
-
-borderKill
-\begin_inset Quotes crd
-\end_inset
-
-...).
-\end_layout
-
-\begin_layout Standard
-Il faut toutefois prendre garde qu'en opérant ainsi, on introduit un biais
- dans les mesures qui seront faites par la suite, car les paramètres seront
- mesurés uniquement sur les particules entièrement visibles.
- Ainsi, plus une particule est petite, plus sa probabilité d'être observée
- sera importante, et les mesures globales seront biaisées en faveur des
- petites particules.
- Une possibilité d'obtenir des mesures plus proches de la réalité est d'applique
-r la correction de Miles-Lantuéjoul, qui pondère les mesures sur les particules
- en fonction de leur probabilité d'échantillonnage.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-tite figure ?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Subsection
-Remplissage des trous
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Codage des contours
-\end_layout
-
-\begin_layout Standard
-On considère, pour chaque région ou particule de l'image binaire, la succession
- des pixels qui forment son contour.
- Au lieu de stocker l'ensemble des coordonnées de chaque pixel, on code
- la direction du pixel suivant, en utilisant une valeur entre 0 et 7.
- On obtient ainsi le 
-\series bold
-code de Freeman
-\series default
-.
-\end_layout
-
-\begin_layout Section
-Séparation de particules se recouvrant
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Séparation-de-particules"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-pourrait trouver une image de démo plus adaptée
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La ligne de partage des eaux est souvent utilisée pour séparer des particules
- qui se touchent après un seuillage (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Watershed-binaire"
-
-\end_inset
-
--a).
- On commence par calculer la fonction distance par rapport au complémentaire
- des particules.
- Les maximas de l'image résultat sont situés vers le centre des particules.
- On inverse cette fonction distance, et on filtre un peu : les minimas sont
- alors les centres des particules (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Watershed-binaire"
-
-\end_inset
-
--b).
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/segment/circles-black.png
-	width 4cm
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/segment/circles-wat-ovr.png
-	width 4cm
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/segment/circles-sep.png
-	width 4cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Watershed-binaire"
-
-\end_inset
-
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Séparation de particules
-\end_layout
-
-\end_inset
-
-Application de la ligne de partage des eaux pour séparer des particules
- connectées.
- (a) Image d'origine (b) fonction distance inversée et ligne de partage
- des eaux sur la fonction distance (c) séparation des particules.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-On applique alors l'algorithme de ligne de partage des eaux.
- Les lignes de crêtes détectées sont les séparations entre les particules
- (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Watershed-binaire"
-
-\end_inset
-
--c).
- En combinant avec l'image binaire d'origine, on arrive à séparer la plupart
- des particules (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Watershed-binaire"
-
-\end_inset
-
--d).
-\end_layout
-
-\begin_layout Section
-Squeletisation
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-objectif de cette section : présenter le principe de la squeletisation,
- et son utilisation
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La squeletisation consiste à supprimer certains pixels pour ne garder que
- ceux situés le long des axes principaux.
- L'objectif est de garder la forme générale de la particule, afin de pouvoir
- en extraire des informations de nature topologique : points terminaux (extrémit
-és du squelette), les points multiples (croisements), points formant les
- branches...
- Quelques exemples de squelettes sont montrés sur la figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Squeletisation-abcd"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/binaires/abcd-bin.png
-	width 4cm
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/binaires/skel-abcd-MatlabSkel-bin.png
-	width 4cm
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/binaires/skel-abcd-MatlabSkel-ovr.png
-	width 4cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Squeletisation-abcd"
-
-\end_inset
-
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Squeletisation d'une image binaire.
-\end_layout
-
-\end_inset
-
-Squeletisation d'une image binaire.
- Image d'origine, résultat de la squeletisation, et superposition du squelette
- sur l'image d'origine.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-On définit le squelette dans un espace continu comme l'ensemble des points
- de la particule qui sont situés à égale distance d'au moins deux points
- de la frontière de l'ensemble d'intérêt 
-\begin_inset CommandInset citation
-LatexCommand citep
-after "p. 162"
-key "Coster1989"
-literal "true"
-
-\end_inset
-
-.
- Une définition plus formelle fait appel à l'ensemble des centres des boules
- de rayon maximal.
-\end_layout
-
-\begin_layout Standard
-Les algorithmes de squeletisation utilisent la définition du squelette,
- adaptée à la nature discrète des images, pour cacluler une approximation
- du squelette euclidien.
- On obtient une image binaire dont les structures ont une épaisseur maximale
- d'un pixel, et qui reprennent la forme générale des particules.
-\end_layout
-
-\begin_layout Standard
-Un des problèmes souvent rencontrés est que la squeletisation est une opération
- très sensible au bruit : une petite variation de forme peut engendrer des
- variations importantes du squelette.
- Cela se traduit notamment par la présence de nombreuses 
-\begin_inset Quotes cld
-\end_inset
-
-barbules
-\begin_inset Quotes crd
-\end_inset
-
-, qui relient l'axe du squelette aux petites aspérités du contour (sur les
- parties courbes du B, par exemple).
- Des outils dits 
-\begin_inset Quotes cld
-\end_inset
-
-d'ébarbulage
-\begin_inset Quotes crd
-\end_inset
-
- (en anglais : 
-\shape italic
-\lang english
-pruning
-\shape default
-\lang french
-) sont parfois disponibles dans les logiciels.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/binaires/skel-abcd-MatlabSkel-ovr.png
-	width 4cm
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/binaires/skel-abcd-MatlabThin-ovr.png
-	width 4cm
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename images/binaires/skel-abcd-imagej-ovr.png
-	width 4cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Squeletisation-algos"
-
-\end_inset
-
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Différents algorithmes de squeletisation.
-\end_layout
-
-\end_inset
-
-Différents algorithmes de squeletisation : résultats obtenus sous Matlab
- (par squeletisation et amincissement homotopiques), et sous ImageJ.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Un autre problème est qu'il existe de nombreux algorithmes de squeletisation
- chacun donnant des résultats différents (voir la figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Squeletisation-algos"
-
-\end_inset
-
-).
- Les algorithmes les plus courants se basent soit sur des cartes de distance,
- soit sur des amincissements homotopiques (amincissements successifs qui
- préservent la topologie des particules).
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-sous-sections possibles :
-\end_layout
-
-\begin_layout Itemize
-algorithmes de squeletisation
-\end_layout
-
-\begin_layout Itemize
-ébarbulage de squelette
-\end_layout
-
-\begin_layout Itemize
-analyse de squelettes
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\end_layout
-
-\begin_layout Part
-L'analyse et l'exploitation des images
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-à ajouter : 
-\end_layout
-
-\begin_layout Itemize
-exploitation de collections d'images
-\end_layout
-
-\begin_layout Itemize
-fusion d'images (ou dans traitement ?)
-\end_layout
-
-\begin_layout Itemize
-bases de données d'images
 \end_layout
 
 \end_inset
